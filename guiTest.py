@@ -11,35 +11,41 @@ from tkinter import filedialog
 
 class splashDialog(tk.Tk):
     def __init__(self):
-        self.root = tk.Tk.__init__(self)
-        self.frm = ttk.Frame(self.root, padding=10)
-        self.frm.grid()
-        self.ttk.Label(self.frm, text="Welcome to Gotchi!").grid(column=0, row=0)
-        self.ttk.Button(self.frm, text = "New Game", command = self.launchNewGame).grid(column = 0, row = 1)
-        self.ttk.Button(self.frm, text = "Open Saved Game", command = self.openFile).grid(column = 0, row = 2)
-        self.ttk.Button(self.frm, text="Quit", command=self.root.destroy).grid(column=0, row=3)
+        self.Splashroot = super().__init__()
+        self.splash = ttk.Frame(self.Splashroot, padding=10)
+        self.splash.grid()
+        ttk.Label(self.splash, text = "Welcome to Gotchi!").grid(column = 0, row = 0)
+        ttk.Button(self.splash, text = "New Game", command = self.startNewGame).grid(column = 0, row = 1)
+        ttk.Button(self.splash, text = "Open Saved Game", command = self.openSavedGame).grid(column = 0, row = 2)
         
-    def launchNewGame(self):
-        print("launch New game")
-        
-    def openFile(self):
-        print("open file")
+    def startNewGame(self):
+        self.newGameScreen = newGame()
+        self.newGameScreen.mainloop()
+    
+    def openSavedGame(self):
+        self.openSavedGame = openSavedGame()
+        self.openSavedGame.mainloop()
     
         
 class newGame(tk.Tk):
     def __init__(self):
-        tk.Tk.__init__(self)
-        self.entry = tk.Entry(self)
-        self.button = tk.Button(self, text="Name My Pet", command=self.on_button)
-        self.button.pack()
-        self.entry.pack()
+        self.Newroot = super().__init__()
+        self.new = ttk.Frame(self.Newroot, padding=10)
+        self.new.grid()
+        ttk.Entry(self.new).grid(column = 0, row = 0)
+        ttk.Button(self.new, text="Name My Pet", command=self.on_button).grid(column = 0, row = 1)
+        ttk.Button(self.new, text="Launch New Game").grid(column = 0, row = 2)
 
     def on_button(self):
         print(self.entry.get())
 
 class openSavedGame(tk.Tk):
     def __init__(self):
-        print("Open saved game")
+        self.Openroot = super().__init__()
+        self.open = ttk.Frame(self.Openroot, padding=10)
+        self.open.grid()
+        ttk.Label(self.open, text = "Placeholder").grid(column = 0, row = 0)
+        
 
         
 class gamePlay(tk.Tk):
