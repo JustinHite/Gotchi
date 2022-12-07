@@ -78,7 +78,7 @@ class gamePlay(tk.Tk):
         self.coord = 10, 10, 60, 60
         self.arc = self.playArea.create_arc(self.coord, start = 0, extent =359 , fill = "red")
         #Feed Pet
-        self.feedPet = ttk.Button(self.play, text = "Feed")
+        self.feedPet = ttk.Button(self.play, text = "Feed", command = self.eat)
         self.feedPet.grid(column=1, row=0)
         #Play
         self.playPet= ttk.Button(self.play, text = "Play")
@@ -86,7 +86,15 @@ class gamePlay(tk.Tk):
         #Clean
         self.cleanPet = ttk.Button(self.play, text = "Clean")
         self.cleanPet.grid(column=1, row=2)
-    
+        
+    def eat(self):
+        self.coord = 10, 10, 60, 60
+        self.playArea.update()
+        self.closed = self.playArea.create_arc(self.coord, start = 0, extent =359 , fill = "red")
+        self.playArea.update()
+        self.open = self.playArea.create_arc(self.coord, start = 0, extent =330 , fill = "red")
+        self.playArea.update()
+        self.closed = self.playArea.create_arc(self.coord, start = 0, extent =359 , fill = "red")
         
 
 
